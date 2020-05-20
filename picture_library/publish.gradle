@@ -1,0 +1,119 @@
+
+def siteUrl = 'https://github.com/chengww5217/PictureSelector'
+def gitUrl = 'https://github.com/chengww5217/PictureSelector.git'
+group = "com.chengww"
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+def getVersionName() {
+    def local_version_name = "version-default-SNAPSHOT"
+    if (hasProperty("VERSION_NAME")) {
+        local_version_name = getProperty("VERSION_NAME")
+    }
+    return local_version_name
+}
+
+task androidJavadocs(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    android.libraryVariants.all { variant ->
+        if (variant.name == 'release') {
+            owner.classpath += variant.javaCompile.classpath
+        }
+    }
+    exclude '**/R.html', '**/R.*.html', '**/index.html'
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    archiveClassifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            Production(MavenPublication) {
+                artifactId = 'PictureSelector'
+                groupId = 'com.chengww'
+                version = getVersionName()
+
+                artifact bundleReleaseAar
+//            artifact androidJavadocsJar
+                artifact androidSourcesJar
+
+                pom {
+                    name = "PictureSelector"
+                    packaging 'aar'
+                    description = "Android Library for cropping images"
+                    url = siteUrl
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "chengww5217"
+                            name = "chengww"
+                            email = "chengww5217@163.com"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:" + gitUrl
+                        developerConnection = "scm:git:" + gitUrl
+                        url = siteUrl
+                    }
+                }
+                // The publication doesn't know about our dependencies, so we have to manually add them to the pom
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+
+                    // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                    configurations.implementation.allDependencies.each {
+                        // Ensure dependencies such as fileTree are not included in the pom.
+                        if (it.name != 'unspecified') {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    bintray {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        user = properties.getProperty('bintrayUser')
+        key = properties.getProperty('bintrayApiKey')
+        publications = ['Production']
+        configurations = ['archives']
+        override = true
+        pkg {
+            repo = 'maven'
+            name = 'PictureSelector'
+            description = "Android Library for cropping images"
+            publish = true
+            publicDownloadNumbers = true
+            licenses = ['Apache-2.0']
+            vcsUrl = gitUrl
+            version {
+                name = this.version
+                desc = "Example ${this.version}"
+                released = new Date()
+                vcsTag = this.version
+            }
+        }
+    }
+}
