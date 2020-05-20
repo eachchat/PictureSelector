@@ -16,6 +16,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxEms="11"
+        android:textStyle="bold"
         android:textColor="?attr/picture.ac_preview.title.textColor"
         android:textSize="18sp" />
 
@@ -25,9 +26,20 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/titleViewBg"
         android:layout_alignBottom="@id/titleViewBg"
-        android:padding="15dp"
+        android:padding="8dp"
         android:src="?attr/picture.preview.leftBack.icon" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:id="@+id/tv_back"
+        android:textSize="17sp"
+        android:textColor="#3E464E"
+        android:layout_toEndOf="@id/pictureLeftBack"
+        android:layout_alignTop="@id/titleViewBg"
+        android:layout_alignBottom="@id/titleViewBg"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/check"

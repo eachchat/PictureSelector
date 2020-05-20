@@ -82,6 +82,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         OnRecyclerViewPreloadMoreListener {
     private static final String TAG = PictureSelectorActivity.class.getSimpleName();
     protected ImageView mIvPictureLeftBack;
+    protected TextView tvBack;
     protected ImageView mIvArrow;
     protected View titleViewBg;
     protected TextView mTvPictureTitle, mTvPictureRight, mTvPictureOk, mTvEmpty,
@@ -153,6 +154,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         container = findViewById(R.id.container);
         titleViewBg = findViewById(R.id.titleViewBg);
         mIvPictureLeftBack = findViewById(R.id.pictureLeftBack);
+        tvBack = findViewById(R.id.tv_back);
         mTvPictureTitle = findViewById(R.id.picture_title);
         mTvPictureRight = findViewById(R.id.picture_right);
         mTvPictureOk = findViewById(R.id.picture_tv_ok);
@@ -175,6 +177,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         mBottomLayout.setVisibility(config.selectionMode == PictureConfig.SINGLE
                 && config.isSingleDirectReturn ? View.GONE : View.VISIBLE);
         mIvPictureLeftBack.setOnClickListener(this);
+        tvBack.setOnClickListener(this);
         mTvPictureRight.setOnClickListener(this);
         mTvPictureOk.setOnClickListener(this);
         mTvPictureImgNum.setOnClickListener(this);
@@ -724,7 +727,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.pictureLeftBack || id == R.id.picture_right) {
+        if (id == R.id.pictureLeftBack || id == R.id.picture_right || id == R.id.tv_back) {
             if (folderWindow != null && folderWindow.isShowing()) {
                 folderWindow.dismiss();
             } else {

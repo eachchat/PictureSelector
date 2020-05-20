@@ -46,6 +46,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
         View.OnClickListener, PictureSimpleFragmentAdapter.OnCallBackActivity {
     private static final String TAG = PicturePreviewActivity.class.getSimpleName();
     protected ImageView pictureLeftBack;
+    protected TextView tvBack;
     protected TextView tvMediaNum, tvTitle, mTvPictureOk;
     protected PreviewViewPager viewPager;
     protected int position;
@@ -106,10 +107,12 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
         screenWidth = ScreenUtils.getScreenWidth(this);
         animation = AnimationUtils.loadAnimation(this, R.anim.picture_anim_modal_in);
         pictureLeftBack = findViewById(R.id.pictureLeftBack);
+        tvBack = findViewById(R.id.tv_back);
         viewPager = findViewById(R.id.preview_pager);
         btnCheck = findViewById(R.id.btnCheck);
         check = findViewById(R.id.check);
         pictureLeftBack.setOnClickListener(this);
+        tvBack.setOnClickListener(this);
         mTvPictureOk = findViewById(R.id.tv_ok);
         mCbOriginal = findViewById(R.id.cb_original);
         tvMediaNum = findViewById(R.id.tvMediaNum);
@@ -581,7 +584,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.pictureLeftBack) {
+        if (id == R.id.pictureLeftBack || id == R.id.tv_back) {
             onBackPressed();
         } else if (id == R.id.tv_ok || id == R.id.tvMediaNum) {
             onComplete();
