@@ -96,6 +96,7 @@ class Engine {
                             orientation = 270;
                             break;
                         default:
+                            orientation = 0;
                             break;
                     }
                     tagBitmap = rotatingImage(tagBitmap, orientation);

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.RelativeLayout">
 
     <View
         android:id="@+id/titleViewBg"
@@ -14,32 +16,36 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="start|center_vertical"
         android:maxEms="11"
-        android:textStyle="bold"
+        android:layout_toEndOf="@id/tv_back"
         android:textColor="?attr/picture.ac_preview.title.textColor"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/pictureLeftBack"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignTop="@id/titleViewBg"
         android:layout_alignBottom="@id/titleViewBg"
-        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:src="?attr/picture.preview.leftBack.icon" />
 
     <TextView
+        android:id="@+id/tv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back"
-        android:id="@+id/tv_back"
-        android:textSize="17sp"
-        android:textColor="#3E464E"
-        android:layout_toEndOf="@id/pictureLeftBack"
         android:layout_alignTop="@id/titleViewBg"
         android:layout_alignBottom="@id/titleViewBg"
-        android:gravity="center"/>
+        android:layout_toEndOf="@id/pictureLeftBack"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:visibility="gone"
+        android:textColor="#999999"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/check"

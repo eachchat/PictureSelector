@@ -130,7 +130,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
     private void goneParentView() {
         mTvPictureRight.setVisibility(View.GONE);
         mTvPictureImgNum.setVisibility(View.GONE);
-        mTvPictureOk.setVisibility(View.GONE);
+//        mTvPictureOk.setVisibility(View.GONE);
     }
 
     @Override
@@ -223,7 +223,7 @@ public class PictureSelectorWeChatStyleActivity extends PictureSelectorActivity 
                     && folderWindow.isShowing()) {
                 folderWindow.dismiss();
             } else {
-                mTvPictureOk.performClick();
+//                mTvPictureOk.performClick();
             }
         }
     }

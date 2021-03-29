@@ -38,7 +38,8 @@
             android:background="@color/picture_color_transparent"
             android:button="@color/picture_color_transparent"
             android:gravity="center"
-            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:text="@string/picture_original_image"
             android:textColor="@color/picture_color_53575e"
             android:textSize="14sp"
@@ -47,7 +48,7 @@
 
         <TextView
             android:id="@+id/picture_tv_ok"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -65,7 +66,7 @@
 
         <TextView
             android:id="@+id/picture_tvMediaNum"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
@@ -86,8 +87,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/rl_bottom"
         android:layout_below="@id/titleViewBg"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         android:overScrollMode="never" />
 
     <TextView

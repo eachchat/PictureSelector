@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.RelativeLayout">
 
     <View
         android:id="@+id/titleViewBg"
@@ -13,7 +15,7 @@
         android:id="@+id/picture_title"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@id/tv_back"
         android:ellipsize="end"
         android:gravity="center"
         android:textStyle="bold"
@@ -29,37 +31,44 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/picture_title"
         android:layout_alignBottom="@id/picture_title"
-        android:layout_toRightOf="@id/picture_title"
+        android:layout_toEndOf="@id/picture_title"
         android:scaleType="centerInside"
         android:src="?attr/picture.arrow_down.icon" />
 
     <TextView
         android:id="@+id/picture_right"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_alignParentRight="true"
+        android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
         android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/picture_cancel"
+        android:layout_marginTop="8dp"
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp"
+        android:background="@drawable/selector_btn_ok"
+        android:text="@string/picture_send"
         android:textColor="?picture.right.textColor"
+        android:layout_marginEnd="16dp"
         android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/pictureLeftBack"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignTop="@id/titleViewBg"
         android:layout_alignBottom="@id/titleViewBg"
-        android:padding="8dp"
-        android:src="?attr/picture.leftBack.icon" />
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:src="@drawable/picture_icon_close" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back"
         android:id="@+id/tv_back"
-        android:textSize="17sp"
-        android:textColor="#3E464E"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:textColor="#999999"
         android:layout_toEndOf="@id/pictureLeftBack"
         android:layout_alignTop="@id/titleViewBg"
         android:layout_alignBottom="@id/titleViewBg"
