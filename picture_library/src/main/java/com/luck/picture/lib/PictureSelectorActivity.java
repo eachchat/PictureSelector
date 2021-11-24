@@ -85,7 +85,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
     protected TextView tvBack;
     protected ImageView mIvArrow;
     protected View titleViewBg;
-    protected TextView mTvPictureTitle, mTvPictureRight, mTvEmpty,
+    protected TextView mTvPictureTitle, mTvPictureRight, mTvEmpty, mTvPictureOk,
             mTvPictureImgNum, mTvPicturePreview, mTvPlayPause, mTvStop, mTvQuit,
             mTvMusicStatus, mTvMusicTotal, mTvMusicTime;
     protected RecyclerPreloadView mRecyclerView;
@@ -157,7 +157,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         tvBack = findViewById(R.id.tv_back);
         mTvPictureTitle = findViewById(R.id.picture_title);
         mTvPictureRight = findViewById(R.id.picture_right);
-//        mTvPictureOk = findViewById(R.id.picture_tv_ok);
+        mTvPictureOk = findViewById(R.id.picture_tv_ok);
         mCbOriginal = findViewById(R.id.cb_original);
         mIvArrow = findViewById(R.id.ivArrow);
         mTvPicturePreview = findViewById(R.id.picture_id_preview);
@@ -179,7 +179,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         mIvPictureLeftBack.setOnClickListener(this);
         tvBack.setOnClickListener(this);
         mTvPictureRight.setOnClickListener(this);
-//        mTvPictureOk.setOnClickListener(this);
+        mTvPictureOk.setOnClickListener(this);
         mTvPictureImgNum.setOnClickListener(this);
         mTvPictureTitle.setOnClickListener(this);
         mIvArrow.setOnClickListener(this);
@@ -343,12 +343,12 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             if (config.style.pictureCheckNumBgStyle != 0) {
                 mTvPictureImgNum.setBackgroundResource(config.style.pictureCheckNumBgStyle);
             }
-//            if (config.style.pictureUnCompleteTextColor != 0) {
-//                mTvPictureOk.setTextColor(config.style.pictureUnCompleteTextColor);
-//            }
-//            if (config.style.pictureCompleteTextSize != 0) {
-//                mTvPictureOk.setTextSize(config.style.pictureCompleteTextSize);
-//            }
+            if (config.style.pictureUnCompleteTextColor != 0) {
+                mTvPictureOk.setTextColor(config.style.pictureUnCompleteTextColor);
+            }
+            if (config.style.pictureCompleteTextSize != 0) {
+                mTvPictureOk.setTextSize(config.style.pictureCompleteTextSize);
+            }
             if (config.style.pictureBottomBgColor != 0) {
                 mBottomLayout.setBackgroundColor(config.style.pictureBottomBgColor);
             }
@@ -358,9 +358,9 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             if (!TextUtils.isEmpty(config.style.pictureRightDefaultText)) {
                 mTvPictureRight.setText(config.style.pictureRightDefaultText);
             }
-//            if (!TextUtils.isEmpty(config.style.pictureUnCompleteText)) {
-//                mTvPictureOk.setText(config.style.pictureUnCompleteText);
-//            }
+            if (!TextUtils.isEmpty(config.style.pictureUnCompleteText)) {
+                mTvPictureOk.setText(config.style.pictureUnCompleteText);
+            }
             if (!TextUtils.isEmpty(config.style.pictureUnPreviewText)) {
                 mTvPicturePreview.setText(config.style.pictureUnPreviewText);
             }
@@ -433,36 +433,36 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
      */
     @Override
     protected void initCompleteText(int startCount) {
-//        boolean isNotEmptyStyle = config.style != null;
-//        if (config.selectionMode == PictureConfig.SINGLE) {
-//            if (startCount <= 0) {
-//                mTvPictureOk.setText(isNotEmptyStyle && !TextUtils.isEmpty(config.style.pictureUnCompleteText)
-//                        ? config.style.pictureUnCompleteText : getString(R.string.picture_please_select));
-//            } else {
-//                boolean isCompleteReplaceNum = isNotEmptyStyle && config.style.isCompleteReplaceNum;
-//                if (isCompleteReplaceNum && !TextUtils.isEmpty(config.style.pictureCompleteText)) {
-//                    mTvPictureOk.setText(String.format(config.style.pictureCompleteText, startCount, 1));
-//                } else {
-//                    mTvPictureOk.setText(isNotEmptyStyle && !TextUtils.isEmpty(config.style.pictureCompleteText)
-//                            ? config.style.pictureCompleteText : getString(R.string.picture_done));
-//                }
-//            }
+        boolean isNotEmptyStyle = config.style != null;
+        if (config.selectionMode == PictureConfig.SINGLE) {
+            if (startCount <= 0) {
+                mTvPictureOk.setText(isNotEmptyStyle && !TextUtils.isEmpty(config.style.pictureUnCompleteText)
+                        ? config.style.pictureUnCompleteText : getString(R.string.picture_please_select));
+            } else {
+                boolean isCompleteReplaceNum = isNotEmptyStyle && config.style.isCompleteReplaceNum;
+                if (isCompleteReplaceNum && !TextUtils.isEmpty(config.style.pictureCompleteText)) {
+                    mTvPictureOk.setText(String.format(config.style.pictureCompleteText, startCount, 1));
+                } else {
+                    mTvPictureOk.setText(isNotEmptyStyle && !TextUtils.isEmpty(config.style.pictureCompleteText)
+                            ? config.style.pictureCompleteText : getString(R.string.picture_done));
+                }
+            }
 
-//        } else {
-//            boolean isCompleteReplaceNum = isNotEmptyStyle && config.style.isCompleteReplaceNum;
-//            if (startCount <= 0) {
-//                mTvPictureOk.setText(isNotEmptyStyle && !TextUtils.isEmpty(config.style.pictureUnCompleteText)
-//                        ? config.style.pictureUnCompleteText : getString(R.string.picture_done_front_num,
-//                        startCount, config.maxSelectNum));
-//            } else {
-//                if (isCompleteReplaceNum && !TextUtils.isEmpty(config.style.pictureCompleteText)) {
-//                    mTvPictureOk.setText(String.format(config.style.pictureCompleteText, startCount, config.maxSelectNum));
-//                } else {
-//                    mTvPictureOk.setText(getString(R.string.picture_done_front_num,
-//                            startCount, config.maxSelectNum));
-//                }
-//            }
-//        }
+        } else {
+            boolean isCompleteReplaceNum = isNotEmptyStyle && config.style.isCompleteReplaceNum;
+            if (startCount <= 0) {
+                mTvPictureOk.setText(isNotEmptyStyle && !TextUtils.isEmpty(config.style.pictureUnCompleteText)
+                        ? config.style.pictureUnCompleteText : getString(R.string.picture_done_front_num,
+                        startCount, config.maxSelectNum));
+            } else {
+                if (isCompleteReplaceNum && !TextUtils.isEmpty(config.style.pictureCompleteText)) {
+                    mTvPictureOk.setText(String.format(config.style.pictureCompleteText, startCount, config.maxSelectNum));
+                } else {
+                    mTvPictureOk.setText(getString(R.string.picture_done_front_num,
+                            startCount, config.maxSelectNum));
+                }
+            }
+        }
     }
 
 
@@ -1363,8 +1363,8 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
     protected void changeImageNumber(List<LocalMedia> selectData) {
         boolean enable = selectData.size() != 0;
         if (enable) {
-//            mTvPictureOk.setEnabled(true);
-//            mTvPictureOk.setSelected(true);
+            mTvPictureOk.setEnabled(true);
+            mTvPictureOk.setSelected(true);
             mTvPictureRight.setEnabled(true);
             mTvPictureRight.setSelected(true);
             mTvPicturePreview.setEnabled(true);
@@ -1390,14 +1390,16 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                 }
                 mTvPictureImgNum.setVisibility(View.VISIBLE);
                 mTvPictureImgNum.setText(String.valueOf(selectData.size()));
-//                if (config.style != null && !TextUtils.isEmpty(config.style.pictureCompleteText)) {
-//                    mTvPictureOk.setText(config.style.pictureCompleteText);
-//                } else {
-//                    mTvPictureOk.setText(getString(R.string.picture_completed));
-//                }
+                if (config.style != null && !TextUtils.isEmpty(config.style.pictureCompleteText)) {
+                    mTvPictureOk.setText(config.style.pictureCompleteText);
+                } else {
+                    mTvPictureOk.setText(getString(R.string.picture_completed));
+                }
                 isStartAnimation = false;
             }
         } else {
+            mTvPictureOk.setEnabled(config.returnEmpty);
+            mTvPictureOk.setSelected(false);
             mTvPictureRight.setEnabled(config.returnEmpty);
             mTvPictureRight.setSelected(false);
             mTvPicturePreview.setEnabled(false);
@@ -1419,11 +1421,11 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                 initCompleteText(selectData.size());
             } else {
                 mTvPictureImgNum.setVisibility(View.INVISIBLE);
-//                if (config.style != null && !TextUtils.isEmpty(config.style.pictureUnCompleteText)) {
-//                    mTvPictureOk.setText(config.style.pictureUnCompleteText);
-//                } else {
-//                    mTvPictureOk.setText(getString(R.string.picture_please_select));
-//                }
+                if (config.style != null && !TextUtils.isEmpty(config.style.pictureUnCompleteText)) {
+                    mTvPictureOk.setText(config.style.pictureUnCompleteText);
+                } else {
+                    mTvPictureOk.setText(getString(R.string.picture_please_select));
+                }
             }
         }
     }

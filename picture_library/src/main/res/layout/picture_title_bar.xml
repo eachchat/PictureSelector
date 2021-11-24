@@ -8,14 +8,15 @@
     <View
         android:id="@+id/titleViewBg"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:background="?colorPrimary" />
 
     <TextView
         android:id="@+id/picture_title"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:layout_toEndOf="@id/tv_back"
+        android:layout_marginLeft="32dp"
         android:ellipsize="end"
         android:gravity="center"
         android:textStyle="bold"
@@ -37,7 +38,7 @@
 
     <TextView
         android:id="@+id/picture_right"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_alignParentEnd="true"
         android:gravity="center"
