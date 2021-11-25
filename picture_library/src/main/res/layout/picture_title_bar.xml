@@ -15,16 +15,16 @@
         android:id="@+id/picture_title"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
-        android:layout_toEndOf="@id/tv_back"
         android:layout_marginLeft="32dp"
+        android:layout_toEndOf="@id/tv_back"
         android:ellipsize="end"
         android:gravity="center"
-        android:textStyle="bold"
         android:maxEms="8"
         android:maxLines="1"
         android:text="@string/picture_camera_roll"
         android:textColor="?picture.title.textColor"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/ivArrow"
@@ -53,12 +53,10 @@
 
     <ImageView
         android:id="@+id/pictureLeftBack"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@id/titleViewBg"
-        android:layout_alignBottom="@id/titleViewBg"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_centerVertical="true"
         android:src="@drawable/picture_icon_close" />
 
     <TextView
