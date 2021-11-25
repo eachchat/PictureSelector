@@ -38,6 +38,8 @@
             android:background="@color/picture_color_transparent"
             android:button="@color/picture_color_transparent"
             android:gravity="center"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:text="@string/picture_original_image"
             android:textColor="@color/picture_color_53575e"
             android:textSize="16sp"
